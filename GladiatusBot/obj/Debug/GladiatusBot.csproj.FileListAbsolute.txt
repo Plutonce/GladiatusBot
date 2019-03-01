@@ -1,0 +1,10 @@
+C:\Users\Tolunay\source\repos\GladiatusBot\GladiatusBot\obj\Debug\GladiatusBot.csprojAssemblyReference.cache
+C:\Users\Tolunay\source\repos\GladiatusBot\GladiatusBot\obj\Debug\GladiatusBot.MainForm.resources
+C:\Users\Tolunay\source\repos\GladiatusBot\GladiatusBot\obj\Debug\GladiatusBot.Properties.Resources.resources
+C:\Users\Tolunay\source\repos\GladiatusBot\GladiatusBot\obj\Debug\GladiatusBot.csproj.GenerateResource.cache
+C:\Users\Tolunay\source\repos\GladiatusBot\GladiatusBot\obj\Debug\GladiatusBot.csproj.CoreCompileInputs.cache
+C:\Users\Tolunay\source\repos\GladiatusBot\GladiatusBot\bin\Debug\GladiatusBot.exe.config
+C:\Users\Tolunay\source\repos\GladiatusBot\GladiatusBot\bin\Debug\GladiatusBot.exe
+C:\Users\Tolunay\source\repos\GladiatusBot\GladiatusBot\bin\Debug\GladiatusBot.pdb
+C:\Users\Tolunay\source\repos\GladiatusBot\GladiatusBot\obj\Debug\GladiatusBot.exe
+C:\Users\Tolunay\source\repos\GladiatusBot\GladiatusBot\obj\Debug\GladiatusBot.pdb
