@@ -8,3 +8,17 @@ C:\Users\Tolunay\source\repos\GladiatusBot\GladiatusBot\bin\Debug\GladiatusBot.e
 C:\Users\Tolunay\source\repos\GladiatusBot\GladiatusBot\bin\Debug\GladiatusBot.pdb
 C:\Users\Tolunay\source\repos\GladiatusBot\GladiatusBot\obj\Debug\GladiatusBot.exe
 C:\Users\Tolunay\source\repos\GladiatusBot\GladiatusBot\obj\Debug\GladiatusBot.pdb
+C:\Users\user\Desktop\tolu\GladiatusBot-master\GladiatusBot\bin\Debug\GladiatusBot.exe.config
+C:\Users\user\Desktop\tolu\GladiatusBot-master\GladiatusBot\bin\Debug\GladiatusBot.exe
+C:\Users\user\Desktop\tolu\GladiatusBot-master\GladiatusBot\bin\Debug\GladiatusBot.pdb
+C:\Users\user\Desktop\tolu\GladiatusBot-master\GladiatusBot\obj\Debug\GladiatusBot.csprojAssemblyReference.cache
+C:\Users\user\Desktop\tolu\GladiatusBot-master\GladiatusBot\obj\Debug\GladiatusBot.MainForm.resources
+C:\Users\user\Desktop\tolu\GladiatusBot-master\GladiatusBot\obj\Debug\GladiatusBot.Properties.Resources.resources
+C:\Users\user\Desktop\tolu\GladiatusBot-master\GladiatusBot\obj\Debug\GladiatusBot.csproj.GenerateResource.cache
+C:\Users\user\Desktop\tolu\GladiatusBot-master\GladiatusBot\obj\Debug\GladiatusBot.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\tolu\GladiatusBot-master\GladiatusBot\obj\Debug\GladiatusBot.exe
+C:\Users\user\Desktop\tolu\GladiatusBot-master\GladiatusBot\obj\Debug\GladiatusBot.pdb
+C:\Users\user\Desktop\tolu\GladiatusBot-master\GladiatusBot\bin\Debug\HtmlAgilityPack.dll
+C:\Users\user\Desktop\tolu\GladiatusBot-master\GladiatusBot\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\user\Desktop\tolu\GladiatusBot-master\GladiatusBot\bin\Debug\HtmlAgilityPack.xml
+C:\Users\user\Desktop\tolu\GladiatusBot-master\GladiatusBot\obj\Debug\GladiatusBot.csproj.CopyComplete
