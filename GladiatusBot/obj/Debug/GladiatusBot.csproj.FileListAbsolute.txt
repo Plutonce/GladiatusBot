@@ -22,3 +22,7 @@ C:\Users\user\Desktop\tolu\GladiatusBot-master\GladiatusBot\bin\Debug\HtmlAgilit
 C:\Users\user\Desktop\tolu\GladiatusBot-master\GladiatusBot\bin\Debug\HtmlAgilityPack.pdb
 C:\Users\user\Desktop\tolu\GladiatusBot-master\GladiatusBot\bin\Debug\HtmlAgilityPack.xml
 C:\Users\user\Desktop\tolu\GladiatusBot-master\GladiatusBot\obj\Debug\GladiatusBot.csproj.CopyComplete
+C:\Users\Tolunay\source\repos\gladiatusBot\GladiatusBot\bin\Debug\HtmlAgilityPack.dll
+C:\Users\Tolunay\source\repos\gladiatusBot\GladiatusBot\bin\Debug\HtmlAgilityPack.pdb
+C:\Users\Tolunay\source\repos\gladiatusBot\GladiatusBot\bin\Debug\HtmlAgilityPack.xml
+C:\Users\Tolunay\source\repos\gladiatusBot\GladiatusBot\obj\Debug\GladiatusBot.csproj.CopyComplete

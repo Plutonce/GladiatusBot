@@ -96,7 +96,7 @@ public class TolunayClass
 
             dataAdapter.Fill(ds);
         }
-        catch (Exception exp)
+        catch (Exception ex)
         {
 
         }
