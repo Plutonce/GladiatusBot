@@ -39,6 +39,7 @@ namespace GladiatusBot
         public string cArmor;
         public string cDamage;
         public string cHealing;
+        public int hpLimit;
         public string[] characterStats;
         public string[] locations;
         public string globalBuff;
@@ -47,10 +48,12 @@ namespace GladiatusBot
         public string attackURL;
         public int minute = 60;
         public int minute10 = 600;
+        public int hpRecoveryMin = 600;
         public int minute2 = 120;
         public int minute5 = 300;
-        public Boolean x5Server=false;
-        public Boolean centurio=false;
+        public int expPointMin = 600;
+        public Boolean x5Server = false;
+        public Boolean centurio = false;
         public Boolean autoAttack = false;
 
         #endregion
@@ -238,118 +241,137 @@ namespace GladiatusBot
 
         private void btnAttack_Click(object sender, EventArgs e)
         {
-            #region Mob Attack
-            if(checkAttack.Checked==true)
+            if (checkHPRecovery.Checked == true && Convert.ToInt32(cHp.Replace("%", "")) <= 10)
+                tmrHPRecovery.Start();
+            else if (Convert.ToInt32(cHp.Replace("%", "")) >= 10)
             {
-                autoAttack = true;
+                if (Convert.ToInt32(tbxExpeditionPoints.Text) > 0)
+                {
+                    #region Mob Attack
+
+                    if (checkAttack.Checked == true)
+                    {
+                        autoAttack = true;
+                    }
+                    var mobOrder = cbxMobOrder.Text;
+                    attackURL = "https://s" + getServer + "-tr.gladiatus.gameforge.com/game/ajax.php?";
+                    refererURL = "https://s" + getServer + "-tr.gladiatus.gameforge.com/game/index.php?mod=location&loc=" + (selectedLocation - 1) + "&sh=" + globalBuff;
+
+
+                    if (mobOrder == "1")
+                    {
+                        creqPostData = "mod=location";
+                        creqPostData += "&submod=attack";
+                        creqPostData += "&location=" + (selectedLocation - 1);
+                        creqPostData += "&stage=" + mobOrder;
+                        creqPostData += "&premium=0";
+                        creqPostData += "&a=";
+                        creqPostData += "&sh=" + globalBuff;
+                        responseHtml = tClass.creq(attackURL, creqPostData, refererURL, creqPost);
+                        responseHtml = responseHtml.Substring(responseHtml.IndexOf("="), responseHtml.IndexOf(";") - responseHtml.IndexOf("="));
+                        responseHtml = responseHtml.Replace("=\"", "");
+                        responseHtml = responseHtml.Replace("\"", "");
+                        combatReport = tClass.creq("https://s" + getServer + "-tr.gladiatus.gameforge.com/game/" + responseHtml, "", "", creqGet);
+
+                    }
+                    else if (mobOrder == "2")
+                    {
+                        creqPostData = "mod=location";
+                        creqPostData += "&submod=attack";
+                        creqPostData += "&location=" + (selectedLocation - 1);
+                        creqPostData += "&stage=" + mobOrder;
+                        creqPostData += "&premium=0";
+                        creqPostData += "&a=";
+                        creqPostData += "&sh=" + globalBuff;
+                        responseHtml = tClass.creq(attackURL, creqPostData, refererURL, creqPost);
+                        responseHtml = responseHtml.Substring(responseHtml.IndexOf("="), responseHtml.IndexOf(";") - responseHtml.IndexOf("="));
+                        responseHtml = responseHtml.Replace("=\"", "");
+                        responseHtml = responseHtml.Replace("\"", "");
+                        combatReport = tClass.creq("https://s" + getServer + "-tr.gladiatus.gameforge.com/game/" + responseHtml, "", "", creqGet);
+                    }
+                    else if (mobOrder == "3")
+                    {
+                        creqPostData = "mod=location";
+                        creqPostData += "&submod=attack";
+                        creqPostData += "&location=" + (selectedLocation - 1);
+                        creqPostData += "&stage=" + mobOrder;
+                        creqPostData += "&premium=0";
+                        creqPostData += "&a=";
+                        creqPostData += "&sh=" + globalBuff;
+                        responseHtml = tClass.creq(attackURL, creqPostData, refererURL, creqPost);
+                        responseHtml = responseHtml.Substring(responseHtml.IndexOf("="), responseHtml.IndexOf(";") - responseHtml.IndexOf("="));
+                        responseHtml = responseHtml.Replace("=\"", "");
+                        responseHtml = responseHtml.Replace("\"", "");
+                        combatReport = tClass.creq("https://s" + getServer + "-tr.gladiatus.gameforge.com/game/" + responseHtml, "", "", creqGet);
+                    }
+                    else if (mobOrder == "Boss")
+                    {
+                        creqPostData = "mod=location";
+                        creqPostData += "&submod=attack";
+                        creqPostData += "&location=" + (selectedLocation - 1);
+                        creqPostData += "&stage=4";
+                        creqPostData += "&premium=0";
+                        creqPostData += "&a=";
+                        creqPostData += "&sh=" + globalBuff;
+                        responseHtml = tClass.creq(attackURL, creqPostData, refererURL, creqPost);
+                        responseHtml = responseHtml.Substring(responseHtml.IndexOf("="), responseHtml.IndexOf(";") - responseHtml.IndexOf("="));
+                        responseHtml = responseHtml.Replace("=\"", "");
+                        responseHtml = responseHtml.Replace("\"", "");
+                        combatReport = tClass.creq("https://s" + getServer + "-tr.gladiatus.gameforge.com/game/" + responseHtml, "", "", creqGet);
+                    }
+
+
+                    #endregion
+
+                    #region Combat Report
+
+                    #region Combat Winner Parse
+                    try
+                    {
+                        var combatWinner = combatReport.Substring(combatReport.IndexOf("reportHeader"), combatReport.IndexOf("itibar kazandı") - combatReport.IndexOf("reportHeader"));
+                        combatWinner = combatWinner.Substring(combatWinner.IndexOf("</a>\n                            </td>\n            <td>"), combatWinner.IndexOf("</td>\n            <td va") - combatWinner.IndexOf("</a>\n                            </td>\n            <td>"));
+                        combatWinner = combatWinner.Replace("</a>\n", "").Replace("</td>\n", "").Replace("<td>", "");
+                        combatWinner = combatWinner.Replace("  ", "");
+                        tClass.logWriter(combatWinner, tbxLog);
+                    }
+                    catch
+                    {
+                        tClass.logWriter("Lose! Change your enemy.", tbxLog);
+                    }
+                    #endregion
+
+                    #region Combat Rewards Parse
+                    try
+                    {
+                        var CombatRewards = combatReport.Substring(combatReport.IndexOf("Ödül"), combatReport.IndexOf("itibar kazandı") - combatReport.IndexOf("Ödül"));
+                        CombatRewards = CombatRewards.Replace("  ", "").Replace(",", "\n");
+                        string[] findRewards = CombatRewards.Split('\n');
+                        tClass.logWriter(findRewards[7].Split(' ')[0] + " Gold", tbxLog);
+                        tClass.logWriter(findRewards[10].Split(' ')[1] + " Experience", tbxLog);
+                        tClass.logWriter(findRewards[13].Split(' ')[1] + " Fame Point", tbxLog);
+                    }
+                    catch
+                    {
+                        tClass.logWriter("---------------", tbxLog);
+                    }
+                    #endregion
+
+                    #endregion
+
+                    ExpeditionPoints("https://s" + getServer + "-tr.gladiatus.gameforge.com/game/" + responseHtml);
+                    ExpeditionTimes();
+                }
+                else
+                {
+                    tClass.logWriter("Expedition Points Insufficient. Bot Status: Stop.", tbxLog);
+                    tmrExpPointRecovery.Start();
+                }
+                
             }
-            var mobOrder = cbxMobOrder.Text;
-            attackURL = "https://s" + getServer + "-tr.gladiatus.gameforge.com/game/ajax.php?";
-            refererURL = "https://s" + getServer + "-tr.gladiatus.gameforge.com/game/index.php?mod=location&loc=" + (selectedLocation - 1) + "&sh=" + globalBuff;
-
-
-            if (mobOrder == "1")
+            else
             {
-                creqPostData = "mod=location";
-                creqPostData += "&submod=attack";
-                creqPostData += "&location=" + (selectedLocation - 1);
-                creqPostData += "&stage=" + mobOrder;
-                creqPostData += "&premium=0";
-                creqPostData += "&a=";
-                creqPostData += "&sh=" + globalBuff;
-                responseHtml = tClass.creq(attackURL, creqPostData, refererURL, creqPost);
-                responseHtml = responseHtml.Substring(responseHtml.IndexOf("="), responseHtml.IndexOf(";") - responseHtml.IndexOf("="));
-                responseHtml = responseHtml.Replace("=\"", "");
-                responseHtml = responseHtml.Replace("\"", "");
-                combatReport = tClass.creq("https://s" + getServer + "-tr.gladiatus.gameforge.com/game/" + responseHtml, "", "", creqGet);
-
+                tClass.logWriter("HP Insufficient. Bot Status: Stop.", tbxLog);
             }
-            else if (mobOrder == "2")
-            {
-                creqPostData = "mod=location";
-                creqPostData += "&submod=attack";
-                creqPostData += "&location=" + (selectedLocation - 1);
-                creqPostData += "&stage=" + mobOrder;
-                creqPostData += "&premium=0";
-                creqPostData += "&a=";
-                creqPostData += "&sh=" + globalBuff;
-                responseHtml = tClass.creq(attackURL, creqPostData, refererURL, creqPost);
-                responseHtml = responseHtml.Substring(responseHtml.IndexOf("="), responseHtml.IndexOf(";") - responseHtml.IndexOf("="));
-                responseHtml = responseHtml.Replace("=\"", "");
-                responseHtml = responseHtml.Replace("\"", "");
-                combatReport = tClass.creq("https://s" + getServer + "-tr.gladiatus.gameforge.com/game/" + responseHtml, "", "", creqGet);
-            }
-            else if (mobOrder == "3")
-            {
-                creqPostData = "mod=location";
-                creqPostData += "&submod=attack";
-                creqPostData += "&location=" + (selectedLocation - 1);
-                creqPostData += "&stage=" + mobOrder;
-                creqPostData += "&premium=0";
-                creqPostData += "&a=";
-                creqPostData += "&sh=" + globalBuff;
-                responseHtml = tClass.creq(attackURL, creqPostData, refererURL, creqPost);
-                responseHtml = responseHtml.Substring(responseHtml.IndexOf("="), responseHtml.IndexOf(";") - responseHtml.IndexOf("="));
-                responseHtml = responseHtml.Replace("=\"", "");
-                responseHtml = responseHtml.Replace("\"", "");
-                combatReport = tClass.creq("https://s" + getServer + "-tr.gladiatus.gameforge.com/game/" + responseHtml, "", "", creqGet);
-            }
-            else if (mobOrder == "Boss")
-            {
-                creqPostData = "mod=location";
-                creqPostData += "&submod=attack";
-                creqPostData += "&location=" + (selectedLocation - 1);
-                creqPostData += "&stage=4";
-                creqPostData += "&premium=0";
-                creqPostData += "&a=";
-                creqPostData += "&sh=" + globalBuff;
-                responseHtml = tClass.creq(attackURL, creqPostData, refererURL, creqPost);
-                responseHtml = responseHtml.Substring(responseHtml.IndexOf("="), responseHtml.IndexOf(";") - responseHtml.IndexOf("="));
-                responseHtml = responseHtml.Replace("=\"", "");
-                responseHtml = responseHtml.Replace("\"", "");
-                combatReport = tClass.creq("https://s" + getServer + "-tr.gladiatus.gameforge.com/game/" + responseHtml, "", "", creqGet);
-            }
-
-
-            #endregion
-
-            #region Combat Report
-
-            #region Combat Winner Parse
-            try
-            {
-                var combatWinner = combatReport.Substring(combatReport.IndexOf("reportHeader"), combatReport.IndexOf("itibar kazandı") - combatReport.IndexOf("reportHeader"));
-                combatWinner = combatWinner.Substring(combatWinner.IndexOf("</a>\n                            </td>\n            <td>"), combatWinner.IndexOf("</td>\n            <td va") - combatWinner.IndexOf("</a>\n                            </td>\n            <td>"));
-                combatWinner = combatWinner.Replace("</a>\n", "").Replace("</td>\n", "").Replace("<td>", "");
-                combatWinner = combatWinner.Replace("  ", "");
-                tClass.logWriter(combatWinner, tbxLog);
-            }
-            catch
-            {
-                tClass.logWriter("Lose! Change your enemy.", tbxLog);
-            }
-            #endregion
-
-            #region Combat Rewards Parse
-            try
-            {
-                var CombatRewards = combatReport.Substring(combatReport.IndexOf("Ödül"), combatReport.IndexOf("itibar kazandı") - combatReport.IndexOf("Ödül"));
-                CombatRewards = CombatRewards.Replace("  ", "").Replace(",", "\n");
-                string[] findRewards = CombatRewards.Split('\n');
-                tClass.logWriter(findRewards[7].Split(' ')[0] + " Gold", tbxLog);
-                tClass.logWriter(findRewards[10].Split(' ')[1] + " Experience", tbxLog);
-                tClass.logWriter(findRewards[13].Split(' ')[1] + " Fame Point", tbxLog);
-            }
-            catch
-            {
-                tClass.logWriter("---------------", tbxLog);
-            }
-            #endregion
-
-            #endregion
-
-            ExpeditionPoints("https://s" + getServer + "-tr.gladiatus.gameforge.com/game/" + responseHtml);
-            ExpeditionTimes();
         }
 
         void ExpeditionPoints(string lastURL)
@@ -371,16 +393,17 @@ namespace GladiatusBot
             charstats = charstats.Replace(";;;", ";");
             charstats = charstats.Replace(";;", "; ");
             characterStats = charstats.Split(';');
-            lblLevel.Text ="Level: "+characterStats[2];
-            lblHP.Text ="HP: " +characterStats[4];
-            lblExp.Text ="Experience: "+characterStats[6];
+            lblLevel.Text = "Level: " + characterStats[2];
+            lblHP.Text = "HP: " + characterStats[4];
+            cHp = characterStats[4];
+            lblExp.Text = "Experience: " + characterStats[6];
+            hpLimit = Convert.ToInt32(characterStats[4].Replace("%", ""));
             #endregion
         }
 
         public void ExpeditionTimes()
         {
             tmrExpedition.Start();
-
         }
 
         private void tmrExpedition_Tick(object sender, EventArgs e)
@@ -399,9 +422,18 @@ namespace GladiatusBot
                         minute = 60;
                         tbxExTimer.Text = "";
                         tmrExpedition.Stop();
-                        if(checkAttack.Checked==true)
-                            btnAttack.PerformClick();
-                        
+                        if (checkAttack.Checked == true)
+                        {
+                            if (hpLimit > 10)
+                                btnAttack.PerformClick();
+                            else
+                            {
+                                tClass.logWriter("HP Insufficient. Bot Status: Stop.", tbxLog);
+                                tmrHPRecovery.Start();
+                            }
+                        }
+
+
                     }
                 }
                 else
@@ -414,7 +446,15 @@ namespace GladiatusBot
                         tbxExTimer.Text = "";
                         tmrExpedition.Stop();
                         if (checkAttack.Checked == true)
-                            btnAttack.PerformClick();
+                        {
+                            if (hpLimit > 10)
+                                btnAttack.PerformClick();
+                            else
+                            {
+                                tClass.logWriter("HP Insufficient. Bot Status: Stop.", tbxLog);
+                                tmrHPRecovery.Start();
+                            }
+                        }
                     }
                 }
             }
@@ -430,7 +470,15 @@ namespace GladiatusBot
                         tbxExTimer.Text = "";
                         tmrExpedition.Stop();
                         if (checkAttack.Checked == true)
-                            btnAttack.PerformClick();
+                        {
+                            if (hpLimit > 10)
+                                btnAttack.PerformClick();
+                            else
+                            {
+                                tClass.logWriter("HP Insufficient. Bot Status: Stop.", tbxLog);
+                                tmrHPRecovery.Start();
+                            }
+                        }
                     }
                 }
                 else
@@ -443,11 +491,72 @@ namespace GladiatusBot
                         tbxExTimer.Text = "";
                         tmrExpedition.Stop();
                         if (checkAttack.Checked == true)
-                            btnAttack.PerformClick();
+                        {
+                            if (hpLimit > 10)
+                                btnAttack.PerformClick();
+                            else
+                            {
+                                tClass.logWriter("HP Insufficient. Bot Status: Stop.", tbxLog);
+                                tmrHPRecovery.Start();
+                            }
+                        }
                     }
                 }
             }
             #endregion
+        }
+
+        private void tmrHPRecovery_Tick(object sender, EventArgs e)
+        {
+            if (hpRecoveryMin != 0)
+            {
+                hpRecoveryMin--;
+                tbxHPRecovery.Text = hpRecoveryMin.ToString();
+            }
+            else
+            {
+                ExpeditionPoints("");
+                if (hpLimit > 85)
+                {
+                    hpRecoveryMin = 600;
+                    tClass.logWriter("HP Recovered. Bot Status: Start.", tbxLog);
+                    tbxHPRecovery.Text = "";
+                    tmrHPRecovery.Stop();
+                    btnAttack.PerformClick();
+                }
+                else
+                {
+                    hpRecoveryMin = 600;
+                }
+
+            }
+        }
+
+        private void tmrExpPointRecovery_Tick(object sender, EventArgs e)
+        {
+            if (expPointMin != 0)
+            {
+                expPointMin--;
+                tbxExpRecovery.Text = expPointMin.ToString();
+            }
+            else
+            {
+                ExpeditionPoints("");
+                if (Convert.ToInt32(tbxExpeditionPoints.Text) > 0)
+                {
+                    expPointMin = 600;
+                    tClass.logWriter("Expedition Point Recovered. Bot Status: Start.", tbxLog);
+                    tbxExpRecovery.Text = "";
+                    tmrExpPointRecovery.Stop();
+                    btnAttack.PerformClick();
+                }
+                else
+                {
+                    expPointMin = 600;
+                }
+
+            }
+            
         }
     }
 }

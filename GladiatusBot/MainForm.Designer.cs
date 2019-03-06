@@ -37,6 +37,8 @@
             this.lblPass = new System.Windows.Forms.Label();
             this.lblServer = new System.Windows.Forms.Label();
             this.grpLogin = new System.Windows.Forms.GroupBox();
+            this.checkCent = new System.Windows.Forms.CheckBox();
+            this.check5x = new System.Windows.Forms.CheckBox();
             this.grpCharStats = new System.Windows.Forms.GroupBox();
             this.lblHealing = new System.Windows.Forms.Label();
             this.lblDamage = new System.Windows.Forms.Label();
@@ -51,35 +53,42 @@
             this.lblHP = new System.Windows.Forms.Label();
             this.lblLevel = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnSelectLocation = new System.Windows.Forms.Button();
-            this.lblLocation = new System.Windows.Forms.Label();
-            this.cbxLocation = new System.Windows.Forms.ComboBox();
-            this.cbxMobOrder = new System.Windows.Forms.ComboBox();
-            this.lblMobOrder = new System.Windows.Forms.Label();
+            this.checkHPRecovery = new System.Windows.Forms.CheckBox();
+            this.checkAttack = new System.Windows.Forms.CheckBox();
             this.btnAttack = new System.Windows.Forms.Button();
+            this.btnSelectLocation = new System.Windows.Forms.Button();
+            this.lblMobOrder = new System.Windows.Forms.Label();
+            this.lblLocation = new System.Windows.Forms.Label();
+            this.cbxMobOrder = new System.Windows.Forms.ComboBox();
+            this.cbxLocation = new System.Windows.Forms.ComboBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.tbxLog = new System.Windows.Forms.TextBox();
             this.grpExpPoints = new System.Windows.Forms.GroupBox();
-            this.lblExpPoints = new System.Windows.Forms.Label();
-            this.lblDungPoints = new System.Windows.Forms.Label();
-            this.tbxExpeditionPoints = new System.Windows.Forms.TextBox();
             this.tbxDungeonPoints = new System.Windows.Forms.TextBox();
+            this.tbxExpeditionPoints = new System.Windows.Forms.TextBox();
+            this.lblDungPoints = new System.Windows.Forms.Label();
+            this.lblExpPoints = new System.Windows.Forms.Label();
             this.lblExpTimer = new System.Windows.Forms.Label();
             this.grpExpTimers = new System.Windows.Forms.GroupBox();
+            this.tbxDungTimer = new System.Windows.Forms.TextBox();
+            this.tbxExTimer = new System.Windows.Forms.TextBox();
             this.lblDungTimer = new System.Windows.Forms.Label();
             this.tmrExpedition = new System.Windows.Forms.Timer(this.components);
             this.tmrDungeon = new System.Windows.Forms.Timer(this.components);
-            this.tbxDungTimer = new System.Windows.Forms.TextBox();
-            this.tbxExTimer = new System.Windows.Forms.TextBox();
-            this.check5x = new System.Windows.Forms.CheckBox();
-            this.checkCent = new System.Windows.Forms.CheckBox();
-            this.checkAttack = new System.Windows.Forms.CheckBox();
+            this.tmrHPRecovery = new System.Windows.Forms.Timer(this.components);
+            this.tmrExpPointRecovery = new System.Windows.Forms.Timer(this.components);
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.lblHPRecovery = new System.Windows.Forms.Label();
+            this.lblExpRecovery = new System.Windows.Forms.Label();
+            this.tbxExpRecovery = new System.Windows.Forms.TextBox();
+            this.tbxHPRecovery = new System.Windows.Forms.TextBox();
             this.grpLogin.SuspendLayout();
             this.grpCharStats.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.grpExpPoints.SuspendLayout();
             this.grpExpTimers.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbxUsername
@@ -168,6 +177,26 @@
             this.grpLogin.TabIndex = 4;
             this.grpLogin.TabStop = false;
             this.grpLogin.Text = "Login";
+            // 
+            // checkCent
+            // 
+            this.checkCent.AutoSize = true;
+            this.checkCent.Location = new System.Drawing.Point(196, 69);
+            this.checkCent.Name = "checkCent";
+            this.checkCent.Size = new System.Drawing.Size(85, 17);
+            this.checkCent.TabIndex = 4;
+            this.checkCent.Text = "Centurio";
+            this.checkCent.UseVisualStyleBackColor = true;
+            // 
+            // check5x
+            // 
+            this.check5x.AutoSize = true;
+            this.check5x.Location = new System.Drawing.Point(196, 46);
+            this.check5x.Name = "check5x";
+            this.check5x.Size = new System.Drawing.Size(83, 17);
+            this.check5x.TabIndex = 4;
+            this.check5x.Text = "5x Server";
+            this.check5x.UseVisualStyleBackColor = true;
             // 
             // grpCharStats
             // 
@@ -313,6 +342,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.checkHPRecovery);
             this.groupBox1.Controls.Add(this.checkAttack);
             this.groupBox1.Controls.Add(this.btnAttack);
             this.groupBox1.Controls.Add(this.btnSelectLocation);
@@ -328,52 +358,25 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "MOB Attack";
             // 
-            // btnSelectLocation
+            // checkHPRecovery
             // 
-            this.btnSelectLocation.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSelectLocation.Location = new System.Drawing.Point(9, 51);
-            this.btnSelectLocation.Name = "btnSelectLocation";
-            this.btnSelectLocation.Size = new System.Drawing.Size(197, 22);
-            this.btnSelectLocation.TabIndex = 4;
-            this.btnSelectLocation.Text = "Select Location";
-            this.btnSelectLocation.UseVisualStyleBackColor = true;
-            this.btnSelectLocation.Click += new System.EventHandler(this.btnSelectLocation_Click);
+            this.checkHPRecovery.AutoSize = true;
+            this.checkHPRecovery.Location = new System.Drawing.Point(212, 87);
+            this.checkHPRecovery.Name = "checkHPRecovery";
+            this.checkHPRecovery.Size = new System.Drawing.Size(105, 17);
+            this.checkHPRecovery.TabIndex = 18;
+            this.checkHPRecovery.Text = "HP Recovery";
+            this.checkHPRecovery.UseVisualStyleBackColor = true;
             // 
-            // lblLocation
+            // checkAttack
             // 
-            this.lblLocation.AutoSize = true;
-            this.lblLocation.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLocation.Location = new System.Drawing.Point(6, 27);
-            this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(74, 13);
-            this.lblLocation.TabIndex = 16;
-            this.lblLocation.Text = "Location: ";
-            // 
-            // cbxLocation
-            // 
-            this.cbxLocation.FormattingEnabled = true;
-            this.cbxLocation.Location = new System.Drawing.Point(85, 24);
-            this.cbxLocation.Name = "cbxLocation";
-            this.cbxLocation.Size = new System.Drawing.Size(121, 21);
-            this.cbxLocation.TabIndex = 0;
-            // 
-            // cbxMobOrder
-            // 
-            this.cbxMobOrder.FormattingEnabled = true;
-            this.cbxMobOrder.Location = new System.Drawing.Point(85, 83);
-            this.cbxMobOrder.Name = "cbxMobOrder";
-            this.cbxMobOrder.Size = new System.Drawing.Size(121, 21);
-            this.cbxMobOrder.TabIndex = 0;
-            // 
-            // lblMobOrder
-            // 
-            this.lblMobOrder.AutoSize = true;
-            this.lblMobOrder.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMobOrder.Location = new System.Drawing.Point(6, 86);
-            this.lblMobOrder.Name = "lblMobOrder";
-            this.lblMobOrder.Size = new System.Drawing.Size(77, 13);
-            this.lblMobOrder.TabIndex = 16;
-            this.lblMobOrder.Text = "Mob Order:";
+            this.checkAttack.AutoSize = true;
+            this.checkAttack.Location = new System.Drawing.Point(212, 114);
+            this.checkAttack.Name = "checkAttack";
+            this.checkAttack.Size = new System.Drawing.Size(109, 17);
+            this.checkAttack.TabIndex = 17;
+            this.checkAttack.Text = "Auto Attack";
+            this.checkAttack.UseVisualStyleBackColor = true;
             // 
             // btnAttack
             // 
@@ -386,6 +389,53 @@
             this.btnAttack.Text = "Attack!";
             this.btnAttack.UseVisualStyleBackColor = true;
             this.btnAttack.Click += new System.EventHandler(this.btnAttack_Click);
+            // 
+            // btnSelectLocation
+            // 
+            this.btnSelectLocation.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSelectLocation.Location = new System.Drawing.Point(9, 51);
+            this.btnSelectLocation.Name = "btnSelectLocation";
+            this.btnSelectLocation.Size = new System.Drawing.Size(197, 22);
+            this.btnSelectLocation.TabIndex = 4;
+            this.btnSelectLocation.Text = "Select Location";
+            this.btnSelectLocation.UseVisualStyleBackColor = true;
+            this.btnSelectLocation.Click += new System.EventHandler(this.btnSelectLocation_Click);
+            // 
+            // lblMobOrder
+            // 
+            this.lblMobOrder.AutoSize = true;
+            this.lblMobOrder.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMobOrder.Location = new System.Drawing.Point(6, 86);
+            this.lblMobOrder.Name = "lblMobOrder";
+            this.lblMobOrder.Size = new System.Drawing.Size(77, 13);
+            this.lblMobOrder.TabIndex = 16;
+            this.lblMobOrder.Text = "Mob Order:";
+            // 
+            // lblLocation
+            // 
+            this.lblLocation.AutoSize = true;
+            this.lblLocation.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocation.Location = new System.Drawing.Point(6, 27);
+            this.lblLocation.Name = "lblLocation";
+            this.lblLocation.Size = new System.Drawing.Size(74, 13);
+            this.lblLocation.TabIndex = 16;
+            this.lblLocation.Text = "Location: ";
+            // 
+            // cbxMobOrder
+            // 
+            this.cbxMobOrder.FormattingEnabled = true;
+            this.cbxMobOrder.Location = new System.Drawing.Point(85, 83);
+            this.cbxMobOrder.Name = "cbxMobOrder";
+            this.cbxMobOrder.Size = new System.Drawing.Size(121, 21);
+            this.cbxMobOrder.TabIndex = 0;
+            // 
+            // cbxLocation
+            // 
+            this.cbxLocation.FormattingEnabled = true;
+            this.cbxLocation.Location = new System.Drawing.Point(85, 24);
+            this.cbxLocation.Name = "cbxLocation";
+            this.cbxLocation.Size = new System.Drawing.Size(121, 21);
+            this.cbxLocation.TabIndex = 0;
             // 
             // groupBox2
             // 
@@ -423,15 +473,23 @@
             this.grpExpPoints.TabStop = false;
             this.grpExpPoints.Text = "Expedition Points";
             // 
-            // lblExpPoints
+            // tbxDungeonPoints
             // 
-            this.lblExpPoints.AutoSize = true;
-            this.lblExpPoints.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExpPoints.Location = new System.Drawing.Point(19, 23);
-            this.lblExpPoints.Name = "lblExpPoints";
-            this.lblExpPoints.Size = new System.Drawing.Size(124, 13);
-            this.lblExpPoints.TabIndex = 17;
-            this.lblExpPoints.Text = "Expedition Points: ";
+            this.tbxDungeonPoints.Enabled = false;
+            this.tbxDungeonPoints.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxDungeonPoints.Location = new System.Drawing.Point(149, 49);
+            this.tbxDungeonPoints.Name = "tbxDungeonPoints";
+            this.tbxDungeonPoints.Size = new System.Drawing.Size(32, 21);
+            this.tbxDungeonPoints.TabIndex = 19;
+            // 
+            // tbxExpeditionPoints
+            // 
+            this.tbxExpeditionPoints.Enabled = false;
+            this.tbxExpeditionPoints.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxExpeditionPoints.Location = new System.Drawing.Point(149, 20);
+            this.tbxExpeditionPoints.Name = "tbxExpeditionPoints";
+            this.tbxExpeditionPoints.Size = new System.Drawing.Size(32, 21);
+            this.tbxExpeditionPoints.TabIndex = 4;
             // 
             // lblDungPoints
             // 
@@ -443,23 +501,15 @@
             this.lblDungPoints.TabIndex = 18;
             this.lblDungPoints.Text = "Dungeon Points: ";
             // 
-            // tbxExpeditionPoints
+            // lblExpPoints
             // 
-            this.tbxExpeditionPoints.Enabled = false;
-            this.tbxExpeditionPoints.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxExpeditionPoints.Location = new System.Drawing.Point(149, 20);
-            this.tbxExpeditionPoints.Name = "tbxExpeditionPoints";
-            this.tbxExpeditionPoints.Size = new System.Drawing.Size(32, 21);
-            this.tbxExpeditionPoints.TabIndex = 4;
-            // 
-            // tbxDungeonPoints
-            // 
-            this.tbxDungeonPoints.Enabled = false;
-            this.tbxDungeonPoints.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxDungeonPoints.Location = new System.Drawing.Point(149, 49);
-            this.tbxDungeonPoints.Name = "tbxDungeonPoints";
-            this.tbxDungeonPoints.Size = new System.Drawing.Size(32, 21);
-            this.tbxDungeonPoints.TabIndex = 19;
+            this.lblExpPoints.AutoSize = true;
+            this.lblExpPoints.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExpPoints.Location = new System.Drawing.Point(19, 23);
+            this.lblExpPoints.Name = "lblExpPoints";
+            this.lblExpPoints.Size = new System.Drawing.Size(124, 13);
+            this.lblExpPoints.TabIndex = 17;
+            this.lblExpPoints.Text = "Expedition Points: ";
             // 
             // lblExpTimer
             // 
@@ -485,6 +535,24 @@
             this.grpExpTimers.TabStop = false;
             this.grpExpTimers.Text = "Expedition Timers";
             // 
+            // tbxDungTimer
+            // 
+            this.tbxDungTimer.Enabled = false;
+            this.tbxDungTimer.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxDungTimer.Location = new System.Drawing.Point(141, 50);
+            this.tbxDungTimer.Name = "tbxDungTimer";
+            this.tbxDungTimer.Size = new System.Drawing.Size(40, 21);
+            this.tbxDungTimer.TabIndex = 21;
+            // 
+            // tbxExTimer
+            // 
+            this.tbxExTimer.Enabled = false;
+            this.tbxExTimer.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxExTimer.Location = new System.Drawing.Point(141, 23);
+            this.tbxExTimer.Name = "tbxExTimer";
+            this.tbxExTimer.Size = new System.Drawing.Size(40, 21);
+            this.tbxExTimer.TabIndex = 20;
+            // 
             // lblDungTimer
             // 
             this.lblDungTimer.AutoSize = true;
@@ -504,59 +572,74 @@
             // 
             this.tmrDungeon.Interval = 1000;
             // 
-            // tbxDungTimer
+            // tmrHPRecovery
             // 
-            this.tbxDungTimer.Enabled = false;
-            this.tbxDungTimer.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxDungTimer.Location = new System.Drawing.Point(141, 50);
-            this.tbxDungTimer.Name = "tbxDungTimer";
-            this.tbxDungTimer.Size = new System.Drawing.Size(40, 21);
-            this.tbxDungTimer.TabIndex = 21;
+            this.tmrHPRecovery.Interval = 1000;
+            this.tmrHPRecovery.Tick += new System.EventHandler(this.tmrHPRecovery_Tick);
             // 
-            // tbxExTimer
+            // tmrExpPointRecovery
             // 
-            this.tbxExTimer.Enabled = false;
-            this.tbxExTimer.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbxExTimer.Location = new System.Drawing.Point(141, 23);
-            this.tbxExTimer.Name = "tbxExTimer";
-            this.tbxExTimer.Size = new System.Drawing.Size(40, 21);
-            this.tbxExTimer.TabIndex = 20;
+            this.tmrExpPointRecovery.Interval = 1000;
+            this.tmrExpPointRecovery.Tick += new System.EventHandler(this.tmrExpPointRecovery_Tick);
             // 
-            // check5x
+            // groupBox3
             // 
-            this.check5x.AutoSize = true;
-            this.check5x.Location = new System.Drawing.Point(196, 46);
-            this.check5x.Name = "check5x";
-            this.check5x.Size = new System.Drawing.Size(83, 17);
-            this.check5x.TabIndex = 4;
-            this.check5x.Text = "5x Server";
-            this.check5x.UseVisualStyleBackColor = true;
+            this.groupBox3.Controls.Add(this.tbxHPRecovery);
+            this.groupBox3.Controls.Add(this.tbxExpRecovery);
+            this.groupBox3.Controls.Add(this.lblExpRecovery);
+            this.groupBox3.Controls.Add(this.lblHPRecovery);
+            this.groupBox3.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F);
+            this.groupBox3.Location = new System.Drawing.Point(379, 233);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(183, 86);
+            this.groupBox3.TabIndex = 22;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Recovery Timers";
             // 
-            // checkCent
+            // lblHPRecovery
             // 
-            this.checkCent.AutoSize = true;
-            this.checkCent.Location = new System.Drawing.Point(196, 69);
-            this.checkCent.Name = "checkCent";
-            this.checkCent.Size = new System.Drawing.Size(85, 17);
-            this.checkCent.TabIndex = 4;
-            this.checkCent.Text = "Centurio";
-            this.checkCent.UseVisualStyleBackColor = true;
+            this.lblHPRecovery.AutoSize = true;
+            this.lblHPRecovery.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHPRecovery.Location = new System.Drawing.Point(58, 53);
+            this.lblHPRecovery.Name = "lblHPRecovery";
+            this.lblHPRecovery.Size = new System.Drawing.Size(64, 13);
+            this.lblHPRecovery.TabIndex = 22;
+            this.lblHPRecovery.Text = "HP Timer: ";
             // 
-            // checkAttack
+            // lblExpRecovery
             // 
-            this.checkAttack.AutoSize = true;
-            this.checkAttack.Location = new System.Drawing.Point(212, 114);
-            this.checkAttack.Name = "checkAttack";
-            this.checkAttack.Size = new System.Drawing.Size(109, 17);
-            this.checkAttack.TabIndex = 17;
-            this.checkAttack.Text = "Auto Attack";
-            this.checkAttack.UseVisualStyleBackColor = true;
+            this.lblExpRecovery.AutoSize = true;
+            this.lblExpRecovery.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExpRecovery.Location = new System.Drawing.Point(6, 26);
+            this.lblExpRecovery.Name = "lblExpRecovery";
+            this.lblExpRecovery.Size = new System.Drawing.Size(116, 13);
+            this.lblExpRecovery.TabIndex = 22;
+            this.lblExpRecovery.Text = "Expedition Timer: ";
+            // 
+            // tbxExpRecovery
+            // 
+            this.tbxExpRecovery.Enabled = false;
+            this.tbxExpRecovery.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxExpRecovery.Location = new System.Drawing.Point(128, 23);
+            this.tbxExpRecovery.Name = "tbxExpRecovery";
+            this.tbxExpRecovery.Size = new System.Drawing.Size(40, 21);
+            this.tbxExpRecovery.TabIndex = 22;
+            // 
+            // tbxHPRecovery
+            // 
+            this.tbxHPRecovery.Enabled = false;
+            this.tbxHPRecovery.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbxHPRecovery.Location = new System.Drawing.Point(128, 50);
+            this.tbxHPRecovery.Name = "tbxHPRecovery";
+            this.tbxHPRecovery.Size = new System.Drawing.Size(40, 21);
+            this.tbxHPRecovery.TabIndex = 23;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 502);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.grpExpTimers);
             this.Controls.Add(this.grpExpPoints);
             this.Controls.Add(this.groupBox2);
@@ -578,6 +661,8 @@
             this.grpExpPoints.PerformLayout();
             this.grpExpTimers.ResumeLayout(false);
             this.grpExpTimers.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -629,6 +714,14 @@
         private System.Windows.Forms.CheckBox checkCent;
         private System.Windows.Forms.CheckBox check5x;
         private System.Windows.Forms.CheckBox checkAttack;
+        private System.Windows.Forms.CheckBox checkHPRecovery;
+        private System.Windows.Forms.Timer tmrHPRecovery;
+        private System.Windows.Forms.Timer tmrExpPointRecovery;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TextBox tbxHPRecovery;
+        private System.Windows.Forms.TextBox tbxExpRecovery;
+        private System.Windows.Forms.Label lblExpRecovery;
+        private System.Windows.Forms.Label lblHPRecovery;
     }
 }
 
